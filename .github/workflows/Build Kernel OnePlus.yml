@@ -1098,13 +1098,13 @@ jobs:
           # TMPFS配置*
           set_config "CONFIG_TMPFS_XATTR=y"
           set_config "CONFIG_TMPFS_POSIX_ACL=y"
-          # ===== 逆向/内存dump CONFIG（最小安全集，只加接口不改ABI）=====
+          # ===== 逆向增强 CONFIG v3（USER_NS + DEVMEM 追加，仍避开 FUNCTION_TRACER）=====
           set_config "CONFIG_PROC_KCORE=y"
           set_config "CONFIG_CHECKPOINT_RESTORE=y"
           set_config "CONFIG_STRICT_DEVMEM=n"
-          # 注：KVM/BPF/BPF_SYSCALL/BPF_JIT/KPROBES/UPROBE_EVENTS/KALLSYMS_ALL 在 GKI 已是 y，无需显式设
-          # 注：CONFIG_FUNCTION_TRACER/DYNAMIC_FTRACE 会改变函数插桩导致厂商模块CRC全崩，绝不能开
-          # 注：CONFIG_USER_NS 改核心结构，先不加入，确保首次成功
+          set_config "CONFIG_DEVMEM=y"
+          set_config "CONFIG_USER_NS=y"
+          # 注：FUNCTION_TRACER/DYNAMIC_FTRACE 会破坏厂商模块CRC导致bootloop，绝不开
           set_config "CONFIG_DEBUG_INFO_BTF=y"
 
           # LSM配置*
