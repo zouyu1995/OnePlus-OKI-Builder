@@ -44,3 +44,5 @@ Please report problems in this repository's [issues](../../issues) with the run 
 ## Disclaimer
 
 Provided as is. Flashing third-party kernels is at your own risk.
+
+<!-- activated -->
